@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import ProjectPage from "./pages/ProjectPage";
 import LoginPage from "./pages/LoginPage"
 import NewProjectPage from "./pages/NewProjectPage"
+import NewUserPage from "./pages/NewUserPage"
 import "./App.css";
 
 function App() {
@@ -30,6 +31,10 @@ function App() {
 
           <Route path="/newproject">
             <NewProjectPage />
+          </Route>
+
+          <Route path="/newuser">
+            <NewUserPage />
           </Route>
 
           <Route path="/">

@@ -1,33 +1,35 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-function ProjectForm () {
-    const [project, setProject] = useState({
-        projectTitle: "",
-        projectDescription: "",
-        goal: 0,
-        image: "",
-        dateEnd: "",
+function NewUserForm () {
+    const [user, setUser] = useState({
+        username: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        profile_picture: "",
+        business_name: "",
+		password: ""
     });
     const history = useHistory();
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setProject((prevProject) => ({
-            ...prevProject,
+        setUser((prevUser) => ({
+            ...prevUser,
             [id]: value,
         }));
     };
     const postData = async () => {
-        const token = window.localStorage.getItem("token")
+        // const token = window.localStorage.getItem("token")
         
         const response = await fetch(
-            `${process.env.REACT_APP_API_URL}/projects/`, {
+            `${process.env.REACT_APP_API_URL}/users/`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Token ${token}`
+                // "Authorization": `Token ${token}`
             },
-            body: JSON.stringify(project),
+            body: JSON.stringify(user),
             }
             );
             return response.json();
@@ -50,18 +52,12 @@ function ProjectForm () {
     // };
 
     const handleSubmit = (e) => {
-        console.log(project.title)
-        console.log(project.description)
-        console.log(project.goal)
-        console.log(project.image)
-        console.log(project.dateEnd)
-        console.log(project.is_open)
         e.preventDefault();
-        if (project.title && project.description && project.goal && project.image && project.dateEnd) {
+        if (user.username && user.first_name && user.last_name && user.email && user.profile_picture && user.business_name && user.password) {
         postData().then((response) => {
             console.log(response)
-        setProject("project", response.project);
-        history.push("/");
+        setUser("user", response.user);
+        history.push("/users/");
         });
         }
     };
@@ -69,49 +65,66 @@ function ProjectForm () {
     return (
         <form>
         <div>
-        <label htmlFor="title">Project Title:</label>
+        <label htmlFor="username">Username:</label>
         <input
             type="text"
-            id="title"
-            placeholder="Enter Project Title"
+            id="username"
+            placeholder="Choose a username"
             onChange={handleChange}
         />
         </div>
         <div>
-        <label htmlFor="description">Description:</label>
+        <label htmlFor="first_name">First name:</label>
         <input 
             type="text"
-            id="description"
-            placeholder="Project Description"
+            id="first_name"
+            placeholder="Your name"
             onChange={handleChange}
         />
         </div>
         <div>
-        <label htmlFor="goal">Goal:</label>
-        <input
-            type="number"
-            id="goal"
-            placeholder="Goal"
-            onChange={handleChange}
-        />
-        </div>
-        <div>
-        <label htmlFor="image">Image:</label>
+        <label htmlFor="last_name">Last name:</label>
         <input
             type="text"
-            id="image"
-            placeholder="Image"
+            id="last_name"
+            placeholder="Last name"
             onChange={handleChange}
         />
         </div>
         <div>
-        <label htmlFor="dateEnd">Date end:</label>
+        <label htmlFor="email">Email:</label>
         <input
-            type="date"
-            id="dateEnd"
+            type="text"
+            id="email"
+            placeholder="Your email"
             onChange={handleChange}
         />
         </div>
+        <div>
+        <label htmlFor="profile_picture">Profile picture:</label>
+        <input
+            type="text"
+            id="profile_picture"
+            onChange={handleChange}
+        />
+        </div>
+        <div>
+        <label htmlFor="business_name">Biz name:</label>
+        <input
+            type="text"
+            id="business_name"
+            onChange={handleChange}
+        />
+        </div>
+        <div>
+        <label htmlFor="password">Password:</label>
+        <input
+            type="password"
+            id="password"
+            onChange={handleChange}
+        />
+        </div>
+        
    
         <button type="submit" onClick={handleSubmit}>
         Submit
@@ -119,5 +132,5 @@ function ProjectForm () {
         </form>
     );
 }
-export default ProjectForm;
+export default NewUserForm;
 

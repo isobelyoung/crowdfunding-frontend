@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import UpdateProjectForm from "../components/UpdateProjectForm/UpdateProjectForm"; 
 
 function ProjectPage() {
     const [projectData, setProjectData] = useState({ pledges: [] });
@@ -30,6 +31,7 @@ function ProjectPage() {
             );
             })}
         </ul>
+        <UpdateProjectForm />
     </div>
 );
 }

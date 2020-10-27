@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
-function ProjectForm () {
+function UpdateProjectForm () {
+
+    const { id } = useParams();
     const [project, setProject] = useState({
         projectTitle: "",
         projectDescription: "",
@@ -9,6 +12,18 @@ function ProjectForm () {
         image: "",
         dateEnd: "",
     });
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_API_URL}/projects/${id}`)
+        .then((results) => {
+            return results.json();
+        })
+        .then((data) => {
+            setProject(data)
+        });
+    }, []);
+
+ 
     const history = useHistory();
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -17,12 +32,15 @@ function ProjectForm () {
             [id]: value,
         }));
     };
-    const postData = async () => {
+
+    // get the project data for the id
+
+    const putData = async () => {
         const token = window.localStorage.getItem("token")
         
         const response = await fetch(
-            `${process.env.REACT_APP_API_URL}/projects/`, {
-            method: "post",
+            `${process.env.REACT_APP_API_URL}/projects/${id}`, {
+            method: "put",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Token ${token}`
@@ -33,32 +51,10 @@ function ProjectForm () {
             return response.json();
     };
 
-    // const putData = async () => {
-    //     const token = window.localStorage.getItem("token")
-        
-    //     const response = await fetch(
-    //         `${process.env.REACT_APP_API_URL}/projects/`, {
-    //         method: "put",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Authorization": `Token ${token}`
-    //         },
-    //         body: JSON.stringify(project),
-    //         }
-    //         );
-    //         return response.json();
-    // };
-
     const handleSubmit = (e) => {
-        console.log(project.title)
-        console.log(project.description)
-        console.log(project.goal)
-        console.log(project.image)
-        console.log(project.dateEnd)
-        console.log(project.is_open)
         e.preventDefault();
-        if (project.title && project.description && project.goal && project.image && project.dateEnd) {
-        postData().then((response) => {
+        if (project.title && project.description && project.goal && project.image) {
+        putData().then((response) => {
             console.log(response)
         setProject("project", response.project);
         history.push("/");
@@ -75,6 +71,7 @@ function ProjectForm () {
             id="title"
             placeholder="Enter Project Title"
             onChange={handleChange}
+            value={project.title}
         />
         </div>
         <div>
@@ -84,6 +81,7 @@ function ProjectForm () {
             id="description"
             placeholder="Project Description"
             onChange={handleChange}
+            value={project.description}
         />
         </div>
         <div>
@@ -93,7 +91,8 @@ function ProjectForm () {
             id="goal"
             placeholder="Goal"
             onChange={handleChange}
-        />
+            value={project.goal}
+            />
         </div>
         <div>
         <label htmlFor="image">Image:</label>
@@ -102,16 +101,10 @@ function ProjectForm () {
             id="image"
             placeholder="Image"
             onChange={handleChange}
+            value={project.image}
         />
         </div>
-        <div>
-        <label htmlFor="dateEnd">Date end:</label>
-        <input
-            type="date"
-            id="dateEnd"
-            onChange={handleChange}
-        />
-        </div>
+
    
         <button type="submit" onClick={handleSubmit}>
         Submit
@@ -119,5 +112,5 @@ function ProjectForm () {
         </form>
     );
 }
-export default ProjectForm;
+export default UpdateProjectForm;
 

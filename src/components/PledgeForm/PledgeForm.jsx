@@ -1,27 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
-function ProjectForm () {
-    const [project, setProject] = useState({
-        projectTitle: "",
-        projectDescription: "",
-        goal: 0,
-        image: "",
-        dateEnd: "",
+function PledgeForm () {
+    const [pledge, setPledge] = useState({
+        amount: "",
+	    comment: "",
+	    anonymous: "False",
+        supporter_id: "",
+        project_id: "",
     });
     const history = useHistory();
+    
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setProject((prevProject) => ({
-            ...prevProject,
+        setPledge((prevPledge) => ({
+            ...prevPledge,
             [id]: value,
         }));
     };
+
+    // get project id from url, link it also to a user 
+
     const postData = async () => {
         const token = window.localStorage.getItem("token")
         
         const response = await fetch(
-            `${process.env.REACT_APP_API_URL}/projects/`, {
+            `${process.env.REACT_APP_API_URL}/projects/${id}/`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
@@ -119,5 +124,5 @@ function ProjectForm () {
         </form>
     );
 }
-export default ProjectForm;
+export default PledgeForm;
 
