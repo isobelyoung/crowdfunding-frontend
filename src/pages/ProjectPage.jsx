@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import UpdateProjectForm from "../components/UpdateProjectForm/UpdateProjectForm"; 
 
 function ProjectPage() {
@@ -17,6 +18,7 @@ function ProjectPage() {
     }, []);
 
     return (
+
     <div>
         <h2>{projectData.title}</h2>
         <h3>Created at: {projectData.date_created}</h3>
@@ -31,7 +33,11 @@ function ProjectPage() {
             );
             })}
         </ul>
-        <UpdateProjectForm />
+
+        <Link to={`/projects/${projectData.id}/pledge`}>Make a pledge!</Link>
+
+        return <UpdateProjectForm />;
+        
     </div>
 );
 }

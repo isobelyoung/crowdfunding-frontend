@@ -7,6 +7,8 @@ import ProjectPage from "./pages/ProjectPage";
 import LoginPage from "./pages/LoginPage"
 import NewProjectPage from "./pages/NewProjectPage"
 import NewUserPage from "./pages/NewUserPage"
+import PledgePage from "./pages/PledgePage"
+import LogoutPage from "./pages/LogoutPage"
 import "./App.css";
 
 function App() {
@@ -21,12 +23,20 @@ function App() {
 
         <Switch>
 
+        <Route path="/projects/:id/pledge">
+            <PledgePage />
+          </Route>
+
           <Route path="/projects/:id">
             <ProjectPage />
           </Route>
 
           <Route path="/login">
             <LoginPage />
+          </Route>
+
+          <Route path="/logout">
+            <LogoutPage />
           </Route>
 
           <Route path="/newproject">

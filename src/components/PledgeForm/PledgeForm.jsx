@@ -3,19 +3,23 @@ import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 
 function PledgeForm () {
-    const [pledge, setPledge] = useState({
+
+    const { id } = useParams();
+
+    const [pledgeData, setPledgeData] = useState({
         amount: "",
 	    comment: "",
 	    anonymous: "False",
         supporter_id: "",
         project_id: "",
     });
+
     const history = useHistory();
     
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setPledge((prevPledge) => ({
-            ...prevPledge,
+        setPledgeData((prevPledgeData) => ({
+            ...prevPledgeData,
             [id]: value,
         }));
     };
@@ -26,13 +30,13 @@ function PledgeForm () {
         const token = window.localStorage.getItem("token")
         
         const response = await fetch(
-            `${process.env.REACT_APP_API_URL}/projects/${id}/`, {
+            `${process.env.REACT_APP_API_URL}/projects/${id}/pledge`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Token ${token}`
             },
-            body: JSON.stringify(project),
+            body: JSON.stringify(pledgeData),
             }
             );
             return response.json();
@@ -55,17 +59,12 @@ function PledgeForm () {
     // };
 
     const handleSubmit = (e) => {
-        console.log(project.title)
-        console.log(project.description)
-        console.log(project.goal)
-        console.log(project.image)
-        console.log(project.dateEnd)
-        console.log(project.is_open)
         e.preventDefault();
-        if (project.title && project.description && project.goal && project.image && project.dateEnd) {
+        if (pledgeData.amount) {
         postData().then((response) => {
             console.log(response)
-        setProject("project", response.project);
+        setPledgeData("pledge", response.pledgeData);
+        console.log(response)
         history.push("/");
         });
         }
@@ -74,50 +73,15 @@ function PledgeForm () {
     return (
         <form>
         <div>
-        <label htmlFor="title">Project Title:</label>
-        <input
-            type="text"
-            id="title"
-            placeholder="Enter Project Title"
-            onChange={handleChange}
-        />
-        </div>
-        <div>
-        <label htmlFor="description">Description:</label>
-        <input 
-            type="text"
-            id="description"
-            placeholder="Project Description"
-            onChange={handleChange}
-        />
-        </div>
-        <div>
-        <label htmlFor="goal">Goal:</label>
+        <label htmlFor="title">Pledge Amount:</label>
         <input
             type="number"
-            id="goal"
-            placeholder="Goal"
+            id="amount"
+            placeholder="Enter Pledge Amount"
             onChange={handleChange}
         />
         </div>
-        <div>
-        <label htmlFor="image">Image:</label>
-        <input
-            type="text"
-            id="image"
-            placeholder="Image"
-            onChange={handleChange}
-        />
-        </div>
-        <div>
-        <label htmlFor="dateEnd">Date end:</label>
-        <input
-            type="date"
-            id="dateEnd"
-            onChange={handleChange}
-        />
-        </div>
-   
+
         <button type="submit" onClick={handleSubmit}>
         Submit
         </button>
@@ -126,3 +90,39 @@ function PledgeForm () {
 }
 export default PledgeForm;
 
+
+{/* <div>
+<label htmlFor="description">Description:</label>
+<input 
+    type="text"
+    id="description"
+    placeholder="Project Description"
+    onChange={handleChange}
+/>
+</div>
+<div>
+<label htmlFor="goal">Goal:</label>
+<input
+    type="number"
+    id="goal"
+    placeholder="Goal"
+    onChange={handleChange}
+/>
+</div>
+<div>
+<label htmlFor="image">Image:</label>
+<input
+    type="text"
+    id="image"
+    placeholder="Image"
+    onChange={handleChange}
+/>
+</div>
+<div>
+<label htmlFor="dateEnd">Date end:</label>
+<input
+    type="date"
+    id="dateEnd"
+    onChange={handleChange}
+/>
+</div> */}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function LoginForm() {
   const [credentials, setCredentials] = useState({
@@ -48,6 +49,7 @@ function LoginForm() {
     }
   };
 
+
   return (
     <form>
       <div>
@@ -71,6 +73,10 @@ function LoginForm() {
       <button type="submit" onClick={handleSubmit}>
         Login
       </button>
+      {/* <button type="submit" onClick={handleLogout}>
+        Logout
+      </button> */}
+      <Link to="/logout">Logout</Link>
     </form>
   );
 }
