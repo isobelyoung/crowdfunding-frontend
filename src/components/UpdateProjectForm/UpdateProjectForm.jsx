@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
+import "./UpdateProjectForm.css";
 
 function UpdateProjectForm () {
 
     const { id } = useParams();
+
     const [project, setProject] = useState({
         projectTitle: "",
         projectDescription: "",
@@ -25,6 +27,7 @@ function UpdateProjectForm () {
 
  
     const history = useHistory();
+    
     const handleChange = (e) => {
         const { id, value } = e.target;
         setProject((prevProject) => ({
@@ -63,8 +66,9 @@ function UpdateProjectForm () {
     };
 
     return (
-        <form>
-        <div>
+        <form className="update-project-wrapper">
+        <h5>Oh hey there, looks like you're the owner! Edit your project here</h5>
+        <div className="form-item">
         <label htmlFor="title">Project Title:</label>
         <input
             type="text"
@@ -74,7 +78,7 @@ function UpdateProjectForm () {
             value={project.title}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="description">Description:</label>
         <input 
             type="text"
@@ -84,7 +88,7 @@ function UpdateProjectForm () {
             value={project.description}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="goal">Goal:</label>
         <input
             type="number"
@@ -94,7 +98,7 @@ function UpdateProjectForm () {
             value={project.goal}
             />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="image">Image:</label>
         <input
             type="text"
@@ -105,12 +109,14 @@ function UpdateProjectForm () {
         />
         </div>
 
-   
-        <button type="submit" onClick={handleSubmit}>
-        Submit
-        </button>
+        <div className="button-wrapper">
+            <button type="submit" onClick={handleSubmit} className="my-button">
+                Submit Changes
+            </button>
+        </div>
+
         </form>
-    );
+    )
 }
 export default UpdateProjectForm;
 

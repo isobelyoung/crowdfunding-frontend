@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Header.css";
 
 function Header() {
+
     return (
-        <h1>My Crowdfunding Project</h1>
+        <div className="my-header">
+            <img src={require('../images/logo.png')} />
+            <h1>Philanthrivia</h1>
+        </div>
     );
 }
 

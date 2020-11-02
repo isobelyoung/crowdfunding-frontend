@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./LoginForm.css"
 
 function LoginForm() {
   const [credentials, setCredentials] = useState({
@@ -44,6 +45,7 @@ function LoginForm() {
           return;
         }
         window.localStorage.setItem("token", response.token);
+        window.localStorage.setItem("username", credentials.username)
         history.push("/");
       });
     }
@@ -51,8 +53,8 @@ function LoginForm() {
 
 
   return (
-    <form>
-      <div>
+    <form className="form-wrapper">
+      <div className="form-item">
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -61,7 +63,7 @@ function LoginForm() {
           onChange={handleChange}
         />
       </div>
-      <div>
+      <div className="form-item">
         <label htmlFor="password">Password:</label>
         <input
           type="password"
@@ -70,15 +72,15 @@ function LoginForm() {
           onChange={handleChange}
         />
       </div>
-      <button type="submit" onClick={handleSubmit}>
-        Login
-      </button>
-      {/* <button type="submit" onClick={handleLogout}>
-        Logout
-      </button> */}
-      <Link to="/logout">Logout</Link>
+      <div className="login-buttons">
+        <button type="submit" onClick={handleSubmit} className="my-button"> 
+          Login
+        </button>
+          <Link to="/logout">Logout</Link>
+      </div>
     </form>
   );
+  
 }
 
 export default LoginForm;

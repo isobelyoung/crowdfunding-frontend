@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import "./LogStyling.css"
 
 function LogoutPage() {
     
@@ -24,7 +25,7 @@ function LogoutPage() {
     const Log = userLog()
 
     return (
-    <h4>{Log}</h4>
+    <h5>{Log}</h5>
     )
     
    }

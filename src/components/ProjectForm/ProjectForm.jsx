@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function ProjectForm () {
+    
     const [project, setProject] = useState({
         projectTitle: "",
         projectDescription: "",
@@ -67,8 +68,8 @@ function ProjectForm () {
     };
 
     return (
-        <form>
-        <div>
+        <form className="form-wrapper">
+        <div className="form-item">
         <label htmlFor="title">Project Title:</label>
         <input
             type="text"
@@ -77,7 +78,7 @@ function ProjectForm () {
             onChange={handleChange}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="description">Description:</label>
         <input 
             type="text"
@@ -86,7 +87,7 @@ function ProjectForm () {
             onChange={handleChange}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="goal">Goal:</label>
         <input
             type="number"
@@ -95,7 +96,7 @@ function ProjectForm () {
             onChange={handleChange}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="image">Image:</label>
         <input
             type="text"
@@ -104,7 +105,7 @@ function ProjectForm () {
             onChange={handleChange}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="dateEnd">Date end:</label>
         <input
             type="date"
@@ -112,10 +113,12 @@ function ProjectForm () {
             onChange={handleChange}
         />
         </div>
-   
-        <button type="submit" onClick={handleSubmit}>
-        Submit
+        <div className="button-wrapper">
+        <div className="project-form-buttons">
+        <button type="submit" onClick={handleSubmit} className="my-button">
+            Submit
         </button>
+        </div></div>
         </form>
     );
 }

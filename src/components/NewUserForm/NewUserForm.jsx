@@ -20,7 +20,6 @@ function NewUserForm () {
         }));
     };
     const postData = async () => {
-        // const token = window.localStorage.getItem("token")
         
         const response = await fetch(
             `${process.env.REACT_APP_API_URL}/users/`, {
@@ -63,8 +62,8 @@ function NewUserForm () {
     };
 
     return (
-        <form>
-        <div>
+        <form className="form-wrapper">
+        <div className="form-item">
         <label htmlFor="username">Username:</label>
         <input
             type="text"
@@ -73,7 +72,7 @@ function NewUserForm () {
             onChange={handleChange}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="first_name">First name:</label>
         <input 
             type="text"
@@ -82,7 +81,7 @@ function NewUserForm () {
             onChange={handleChange}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="last_name">Last name:</label>
         <input
             type="text"
@@ -91,7 +90,7 @@ function NewUserForm () {
             onChange={handleChange}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="email">Email:</label>
         <input
             type="text"
@@ -100,7 +99,7 @@ function NewUserForm () {
             onChange={handleChange}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="profile_picture">Profile picture:</label>
         <input
             type="text"
@@ -108,7 +107,7 @@ function NewUserForm () {
             onChange={handleChange}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="business_name">Biz name:</label>
         <input
             type="text"
@@ -116,7 +115,7 @@ function NewUserForm () {
             onChange={handleChange}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="password">Password:</label>
         <input
             type="password"
@@ -125,10 +124,11 @@ function NewUserForm () {
         />
         </div>
         
-   
-        <button type="submit" onClick={handleSubmit}>
-        Submit
-        </button>
+        <div className="login-buttons">
+            <button type="submit" onClick={handleSubmit} className="my-button">
+            Submit
+            </button>
+        </div>
         </form>
     );
 }

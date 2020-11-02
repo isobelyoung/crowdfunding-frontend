@@ -10,8 +10,8 @@ function Nav() {
     
         <nav className="nav-bar">
             <Link to="/">Home</Link>
-            <Link to="/projects">Project</Link>
-            <Link to="/newuser">New User</Link>
+            <Link to="/aboutus">About Us</Link>
+            <Link to="/newproject">New Project</Link>
             <Link to="/login">Login/Logout</Link>
         </nav>
     );

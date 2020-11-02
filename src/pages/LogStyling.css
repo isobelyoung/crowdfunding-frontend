@@ -1,0 +1,17 @@
+.yellow-button {
+  border: 2px solid #ffd23f;
+  background-color: #ffd23f;
+  color: #373737;
+  text-align: center;
+  padding: 0.5em 5em;
+  border-radius: 15px;
+  text-transform: uppercase;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 50px;
+}

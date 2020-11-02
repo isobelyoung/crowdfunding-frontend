@@ -9,6 +9,7 @@ import NewProjectPage from "./pages/NewProjectPage"
 import NewUserPage from "./pages/NewUserPage"
 import PledgePage from "./pages/PledgePage"
 import LogoutPage from "./pages/LogoutPage"
+import AboutUsPage from "./pages/AboutUsPage"
 import "./App.css";
 
 function App() {
@@ -46,6 +47,11 @@ function App() {
           <Route path="/newuser">
             <NewUserPage />
           </Route>
+
+          <Route path="/aboutus">
+            <AboutUsPage />
+          </Route>
+
 
           <Route path="/">
             <HomePage />

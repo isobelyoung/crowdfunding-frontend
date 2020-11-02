@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { allProjects } from "../data";
 import ProjectCard from "../components/ProjectCard/ProjectCard";
+import UserWelcome from "../components/UserWelcome/UserWelcome";
+
 
 function HomePage() {
     const [projectList, setProjectList] = useState([]);
@@ -14,10 +16,16 @@ function HomePage() {
     }, []);
 
     return (
-    <div id="project-list">
-        {projectList.map((projectData, key) => {
-            return <ProjectCard key={key} projectData={projectData} />;
-        })}
+
+    <div>
+        <div className="user-welcome">
+            <UserWelcome />
+        </div>
+        <div id="project-list">
+            {projectList.map((projectData, key) => {
+                return <ProjectCard key={key} projectData={projectData} />;
+            })}
+        </div>
     </div>
     )
 }
