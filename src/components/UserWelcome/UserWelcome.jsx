@@ -17,7 +17,7 @@ function UserWelcomePage() {
     const userLog = () => {
       if (token) {
         return (
-            <div>
+            <div className="user-welcome-wrapper">
                 <h2>Hi, {username}!</h2>
                 <p>It's great to see you.</p>
                 <img src="https://icon-library.com/images/b1585ed98b.png" className="down-arrow"/>
@@ -25,7 +25,7 @@ function UserWelcomePage() {
         )
       }
       return (
-          <div>
+          <div className="user-welcome-wrapper">
             <h2>Hi there!</h2>
             <p>Looks like you're not logged in yet.</p>
             <Link to="/login">Login</Link>
