@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
+import "./PledgeForm.css"
 
 function PledgeForm (props) {
 
@@ -102,8 +103,8 @@ function PledgeForm (props) {
 
     return (
         <div>
-        <form>
-        <div>
+        <form className="form-wrapper">
+        <div className="form-item">
         <label htmlFor="amount">Pledge Amount:</label>
         <input
             type="number"
@@ -112,7 +113,7 @@ function PledgeForm (props) {
             onChange={handleChange}
         />
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="comment">Pledge Comment:</label>
         <input
             type="text"
@@ -131,7 +132,7 @@ function PledgeForm (props) {
             value={credentials.id}
         />
         </div> */}
-        <div>
+        <div className="form-item">
             <input
                 name="anonymous"
                 type="checkbox"
@@ -139,7 +140,7 @@ function PledgeForm (props) {
                 onChange={handleInputChange} />
             <label> Anonymous</label>
         </div>
-        <div>
+        <div className="form-item">
         <label htmlFor="project_id">The Project ID - don't change this!</label>
         <input
             type="number"
@@ -150,10 +151,11 @@ function PledgeForm (props) {
         />
         </div>
         
-
-        <button type="submit" onClick={handleSubmit}>
+        <div className="button-wrapper">
+        <button type="submit" onClick={handleSubmit} className="my-button">
             Submit
         </button>
+        </div>
         {/* <div>
             <{errorMessage != null ? <p className="error">{errorMessage}</p> : <></>}   
         </div> */}

@@ -9,7 +9,7 @@ function PledgePage() {
 
     return (
         <div>
-        <h1>Hi, {username}</h1>
+        <h5>Show us what you've got, {username}!</h5>
         <PledgeForm project_id = {id}/>
     </div>
     )
